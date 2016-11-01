@@ -15,8 +15,7 @@ if function_name == "run_ping":
     num_packets = sys.argv[3]
     raw_ping_output_filename = sys.argv[4]
     aggregated_ping_output_filename = sys.argv[5]
-    print "what"
-    ls_output = subprocess.check_output("ping -c 10 google.com", shell=True)
+    print(subprocess.check_output("ping -c 10 google.com", shell=True))
     print ls_output
 elif function_name == "plot_median_rtt_cdf":
     pass
