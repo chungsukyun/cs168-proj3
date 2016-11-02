@@ -17,22 +17,22 @@ if function_name == "run_ping":
     aggregated_ping_output_filename = sys.argv[5]
     raw_ping_dict = {}
     aggregated_ping_dict = {}
-    name = hostnames[0]
-    ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell = True).decode("utf-8")
-    ls_output_lines = ls_output.splitlines()
-    rtt_list = []
-    i = 1
-    while i < int(num_packets) - 1:
-        line = ls_output_lines[i]
-        line = line.split()
-        ttl = float(line[7][5:])
-        rtt_list += [ttl]
-        i += 1
-    print rtt_list
+    # name = hostnames[0]
+    # ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell = True).decode("utf-8")
+    # ls_output_lines = ls_output.splitlines()
+    # rtt_list = []
+    # i = 1
+    # while i < int(num_packets):
+    #     line = ls_output_lines[i]
+    #     line = line.split()
+    #     ttl = float(line[7][5:])
+    #     rtt_list += [ttl]
+    #     i += 1
+    # print rtt_list
 
-    # for name in hostnames:
-    #     ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell=True).decode("utf-8")
-    #     print ls_output
+    for name in hostnames:
+        ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell=True).decode("utf-8")
+        print ls_output
 
 elif function_name == "plot_median_rtt_cdf":
     pass
