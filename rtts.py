@@ -40,11 +40,12 @@ if function_name == "run_ping":
     # print rtt_list
 
     for name in hostnames:
+        ls_output_lines = []
         try:
             ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell=True).decode("utf-8")
+            ls_output_lines = ls_output.splitlines()
         except subprocess.CalledProcessError:
             print "error!"
-        ls_output_lines = ls_output.splitlines()
         rtt_list = []
         i = 1
         while i < int(num_packets):
