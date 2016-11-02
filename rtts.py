@@ -18,8 +18,10 @@ if function_name == "run_ping":
     raw_ping_dict = {}
     aggregated_ping_dict = {}
     name = hostnames[0]
-    ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell = True).decode("utf-8")
+    ls_output = subprocess.check_output("ping -c " + (num_packets+1) + " " + name, shell = True).decode("utf-8")
     print ls_output
+    rtt_list = []
+
     # for name in hostnames:
     #     ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell=True).decode("utf-8")
     #     print ls_output
