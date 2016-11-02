@@ -22,7 +22,7 @@ if function_name == "run_ping":
     ls_output_lines = ls_output.splitlines()
     rtt_list = []
     i = 1
-    while i < int(num_packets):
+    while i < int(num_packets) - 1:
         line = ls_output_lines[i]
         line = line.split()
         ttl = float(line[7][5:])
