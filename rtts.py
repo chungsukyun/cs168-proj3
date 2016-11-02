@@ -46,17 +46,19 @@ if function_name == "run_ping":
         rtt_list = []
         line_counter = 1
         packet_counter = 1
+        print ls_output
         while packet_counter < int(num_packets):
             line = ls_output_lines[line_counter]
             line = line.split()
-            if int(find_string(line, "icmp_seq=")[9:]) != packet_counter:
+            if find_string(line, "icmp_seq=")[9:] == "":
+                rtt_list += [-1.0]
+            elif int(find_string(line, "icmp_seq=")[9:]) != packet_counter:
                 rtt_list += [-1.0]
             else:
                 rtt = float(find_string(line, "time=")[5:])
                 rtt_list += [rtt]
                 line_counter += 1
             packet_counter += 1
-        print ls_output
         print rtt_list
 
 elif function_name == "plot_median_rtt_cdf":
