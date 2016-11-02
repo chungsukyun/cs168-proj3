@@ -1,6 +1,7 @@
 import subprocess
 import json
 import sys
+import numpy
 
 function_name = sys.argv[1]
 
@@ -26,18 +27,6 @@ if function_name == "run_ping":
     aggregated_ping_output_filename = sys.argv[5]
     raw_ping_dict = {}
     aggregated_ping_dict = {}
-    # name = hostnames[0]
-    # ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell = True).decode("utf-8")
-    # ls_output_lines = ls_output.splitlines()
-    # rtt_list = []
-    # i = 1
-    # while i < int(num_packets):
-    #     line = ls_output_lines[i]
-    #     line = line.split()
-    #     ttl = float(line[7][5:])
-    #     rtt_list += [ttl]
-    #     i += 1
-    # print rtt_list
 
     for name in hostnames:
         ls_output, err = subprocess.Popen(["ping", "-c", num_packets, name], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
@@ -46,20 +35,32 @@ if function_name == "run_ping":
         rtt_list = []
         line_counter = 1
         packet_counter = 1
-        print ls_output
+        drop_counter = 0
         while packet_counter < int(num_packets):
             line = ls_output_lines[line_counter]
             line = line.split()
             if find_string(line, "icmp_seq=")[9:] == "":
                 rtt_list += [-1.0]
+                drop_counter += 1
             elif int(find_string(line, "icmp_seq=")[9:]) != packet_counter:
                 rtt_list += [-1.0]
+                drop_counter += 1
             else:
                 rtt = float(find_string(line, "time=")[5:])
                 rtt_list += [rtt]
                 line_counter += 1
             packet_counter += 1
-        print rtt_list
+        raw_ping_dict[name] = rtt_list
+        drop_rate = ((float) drop_counter)/((float) (int(num_packets)-1))
+        filtered = filter(lambda a: a != -1.0, rtt_list)
+        median_rtt = -1.0
+        max_rtt = -1.0
+        if len(filtered) != 0:
+            median_rtt = numpy.median(filtered)
+            max_rtt = numpy.amax(filtered)
+        aggregated_ping_dict[name] = {"drop_rate": drop_rate, "max_rtt": max_rtt, "median_rtt": median_rtt}
+        print raw_ping_dict[name]
+        print aggregated_ping_dict[name]
 
 elif function_name == "plot_median_rtt_cdf":
     pass
