@@ -12,7 +12,7 @@ if function_name == "run_ping":
     while line != "":
         hostnames += [line]
         line = hostname_file.readline().rstrip()
-    num_packets = sys.argv[3] + 1
+    num_packets = str(int(sys.argv[3]) + 1)
     raw_ping_output_filename = sys.argv[4]
     aggregated_ping_output_filename = sys.argv[5]
     raw_ping_dict = {}
