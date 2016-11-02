@@ -50,7 +50,7 @@ if function_name == "run_ping":
             line = line.split()
             rtt = float(find_string(line, "time=")[5:])
             rtt_list += [rtt]
-            i += 1]
+            i += 1
 
 elif function_name == "plot_median_rtt_cdf":
     pass
