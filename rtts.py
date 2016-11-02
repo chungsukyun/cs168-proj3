@@ -44,16 +44,18 @@ if function_name == "run_ping":
         # ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell=True).decode("utf-8")
         ls_output_lines = ls_output.splitlines()
         rtt_list = []
-        i = 1
-        while i < int(num_packets):
-            line = ls_output_lines[i]
+        line_counter = 1
+        packet_counter = 1
+        while packet_counter < int(num_packets):
+            line = ls_output_lines[line_counter]
             line = line.split()
-            if int(find_string(line, "icmp_seq=")[9:]) != i:
+            if int(find_string(line, "icmp_seq=")[9:]) != packet_counter:
                 rtt_list += [-1.0]
             else:
                 rtt = float(find_string(line, "time=")[5:])
                 rtt_list += [rtt]
-                i += 1
+                line_counter += 1
+            packet_counter += 1
         print ls_output
         print rtt_list
 
