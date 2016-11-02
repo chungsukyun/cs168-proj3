@@ -10,6 +10,7 @@ def find_string(lst, s):
         e = lst[i]
         if e[:len(s)]==s:
             return e
+        i += 1
     return ""
 
 if function_name == "run_ping":
