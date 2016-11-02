@@ -7,7 +7,7 @@ function_name = sys.argv[1]
 def find_string(lst, s):
     i = 0
     while i < len(lst):
-        e = l[i]
+        e = lst[i]
         if e[:len(s)]==s:
             return e
     return ""
