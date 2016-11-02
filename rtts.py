@@ -4,6 +4,14 @@ import sys
 
 function_name = sys.argv[1]
 
+def find_string(lst, s):
+    i = 0
+    while i < len(lst):
+        e = l[i]
+        if e[:len(s)]==s:
+            return e
+    return ""
+
 if function_name == "run_ping":
     hostnames = []
     hostname_file_name = sys.argv[2]
@@ -32,7 +40,16 @@ if function_name == "run_ping":
 
     for name in hostnames:
         ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell=True).decode("utf-8")
-        print ls_output
+        ls_output_lines = ls_output.splitlines()
+        rtt_list = []
+        i = 1
+        while i < int(num_packets):
+            line = ls_outputlines[i]
+            line = line.split()
+            rtt = float(find_string(line, "time=")[5:])
+            rtt_list += [rtt]
+            i += 1
+        print rtt_list
 
 elif function_name == "plot_median_rtt_cdf":
     pass
