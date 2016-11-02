@@ -40,25 +40,24 @@ if function_name == "run_ping":
     # print rtt_list
 
     for name in hostnames:
-        ls_output_lines = []
         try:
             ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell=True).decode("utf-8")
             ls_output_lines = ls_output.splitlines()
+            rtt_list = []
+            i = 1
+            while i < int(num_packets):
+                line = ls_output_lines[i]
+                line = line.split()
+                if int(find_string(line, "icmp_seq=")[9:]) != i:
+                    rtt_list += [-1.0]
+                else:
+                    rtt = float(find_string(line, "time=")[5:])
+                    rtt_list += [rtt]
+                    i += 1
+            print ls_output
+            print rtt_list
         except subprocess.CalledProcessError:
             print "error!"
-        rtt_list = []
-        i = 1
-        while i < int(num_packets):
-            line = ls_output_lines[i]
-            line = line.split()
-            if int(find_string(line, "icmp_seq=")[9:]) != i:
-                rtt_list += [-1.0]
-            else:
-                rtt = float(find_string(line, "time=")[5:])
-                rtt_list += [rtt]
-                i += 1
-        print ls_output
-        print rtt_list
 
 elif function_name == "plot_median_rtt_cdf":
     pass
