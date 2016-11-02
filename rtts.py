@@ -51,7 +51,8 @@ if function_name == "run_ping":
                 line_counter += 1
             packet_counter += 1
         raw_ping_dict[name] = rtt_list
-        drop_rate = ((float) drop_counter)/((float) (int(num_packets)-1))
+        drop_counter = (float) drop_counter
+        drop_rate = drop_counter/((float) (int(num_packets)-1))
         filtered = filter(lambda a: a != -1.0, rtt_list)
         median_rtt = -1.0
         max_rtt = -1.0
