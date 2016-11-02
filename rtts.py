@@ -40,7 +40,7 @@ if function_name == "run_ping":
     # print rtt_list
 
     for name in hostnames:
-        ls_output, err = subprocess.Popen(["ping", "-c", num_packets, name], stdout=subprocess.PIPE, stderr=subprocess.POPEN).communicate()
+        ls_output = subprocess.Popen(["ping", "-c", num_packets, name], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
         # ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell=True).decode("utf-8")
         ls_output_lines = ls_output.splitlines()
         rtt_list = []
