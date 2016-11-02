@@ -25,7 +25,7 @@ if function_name == "run_ping":
     while i < int(num_packets):
         line = ls_output_lines[i]
         line = line.split()
-        ttl = int(line[6][4:])
+        ttl = int(line[7][5:])
         rtt_list += [ttl]
         i += 1
     print rtt_list
