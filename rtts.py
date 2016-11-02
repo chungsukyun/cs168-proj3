@@ -44,7 +44,7 @@ if function_name == "run_ping":
         rtt_list = []
         i = 1
         while i < int(num_packets):
-            line = ls_outputlines[i]
+            line = ls_output_lines[i]
             line = line.split()
             rtt = float(find_string(line, "time=")[5:])
             rtt_list += [rtt]
