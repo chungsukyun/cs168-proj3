@@ -36,6 +36,7 @@ if function_name == "run_ping":
     for name in hostnames:
         ls_output, err = subprocess.Popen(["ping", "-c", num_packets, name], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
         ls_output_lines = ls_output.splitlines()
+        print ls_output
         rtt_list = []
         line_counter = 1
         packet_counter = 1
