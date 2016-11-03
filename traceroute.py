@@ -16,6 +16,7 @@ if function_name == "run_traceroute":
         line = hostname_file.readline().rstrip()
     num_packets = int(sys.argv[3])
     output_filename = sys.argv[4]
+    print hostnames
     for name in hostnames:
         ls_output, err = subprocess.Popen(["traceroute", "-A", "-q", str(num_packets), name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
         print ls_output
