@@ -60,8 +60,11 @@ if function_name == "run_ping":
             median_rtt = round(numpy.median(filtered), int(3 - math.ceil(math.log10(abs(numpy.median(filtered))))))
             max_rtt = round(numpy.amax(filtered), int(3 - math.ceil(math.log10(abs(numpy.amax(filtered))))))
         aggregated_ping_dict[name] = {"drop_rate": drop_rate, "max_rtt": max_rtt, "median_rtt": median_rtt}
-        print raw_ping_dict[name]
-        print aggregated_ping_dict[name]
+
+    with open(raw_ping_output_filename, "w") as fp:
+        json.dump(raw_ping_dict, fp)
+    with open(aggregated_ping_output_filename, "w") as fp:
+        json.dump(aggregated_ping_dict, fp)
 
 elif function_name == "plot_median_rtt_cdf":
     pass
