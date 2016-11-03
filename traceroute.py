@@ -6,7 +6,7 @@ import math
 
 function_name = sys.argv[1]
 
-if function_name = "run_traceroute":
+if function_name == "run_traceroute":
     hostnames = []
     hostname_file_name = sys.argv[2]
     hostname_file = open(hostname_file_name, 'r')
@@ -20,7 +20,7 @@ if function_name = "run_traceroute":
         ls_output, err = subprocess.Popen(["traceroute", "-a", num_packets, name], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
         print ls_output
 
-elif function_name = "parse_traceroute":
+elif function_name == "parse_traceroute":
     pass
 else:
     print "The function you have called does not exist."
