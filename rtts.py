@@ -4,9 +4,9 @@ import sys
 import numpy
 import math
 import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plot
 from matplotlib.backends import backend_pdf
-matplotlib.use('Agg')
 
 function_name = sys.argv[1]
 
