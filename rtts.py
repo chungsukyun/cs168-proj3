@@ -139,7 +139,7 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 if function_name == "plot_median_rtt_cdf":
     agg_ping_results_filename = sys.argv[2]
     output_cdf_filename = sys.argv[3]
-    plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
+    plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename)
     # json_file = open(agg_ping_results_filename)
     # json_str = json_file.read()
     # aggregated_ping_dict = json.loads(json_str)
