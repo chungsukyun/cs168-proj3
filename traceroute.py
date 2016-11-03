@@ -70,7 +70,7 @@ if function_name == "run_traceroute":
                     if line[j-1][1] == "*":
                         IP = "None"
                     else:
-                        IP = line[j-1][1:(len(line[j])-1)]
+                        IP = line[j-1][1:(len(line[j-1])-1)]
                     if line[j-2][0] == "*":
                         Name = "None"
                     else:
