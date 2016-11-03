@@ -37,7 +37,7 @@ if function_name == "run_traceroute":
             if line[0] == "traceroute":
                 continue
             if find_num_names(line) == 0:
-
+                pass
 
 
 elif function_name == "parse_traceroute":
