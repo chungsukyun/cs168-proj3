@@ -34,7 +34,6 @@ if function_name == "run_ping":
     aggregated_ping_dict = {}
 
     for name in hostnames:
-        print name
         ls_output, err = subprocess.Popen(["ping", "-c", num_packets, name], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
         ls_output_lines = ls_output.splitlines()
         rtt_list = []
