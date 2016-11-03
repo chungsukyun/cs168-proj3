@@ -3,6 +3,7 @@ import json
 import sys
 import numpy
 import math
+import matplotlib.pyplot as plot
 
 function_name = sys.argv[1]
 
@@ -31,7 +32,6 @@ if function_name == "run_ping":
 
     for name in hostnames:
         ls_output, err = subprocess.Popen(["ping", "-c", num_packets, name], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-        # ls_output = subprocess.check_output("ping -c " + num_packets + " " + name, shell=True).decode("utf-8")
         ls_output_lines = ls_output.splitlines()
         rtt_list = []
         line_counter = 1
@@ -41,10 +41,10 @@ if function_name == "run_ping":
             line = ls_output_lines[line_counter]
             line = line.split()
             if find_string(line, "icmp_seq=")[9:] == "":
-                rtt_list += [-1.0]
+                rtt_list += [-1.000]
                 drop_counter += 1
             elif int(find_string(line, "icmp_seq=")[9:]) != packet_counter:
-                rtt_list += [-1.0]
+                rtt_list += [-1.000]
                 drop_counter += 1
             else:
                 rtt = float(find_string(line, "time=")[5:])
@@ -53,9 +53,9 @@ if function_name == "run_ping":
             packet_counter += 1
         raw_ping_dict[name] = rtt_list
         drop_rate = float(float(drop_counter)/float(int(num_packets)-1))
-        filtered = filter(lambda a: a != -1.0, rtt_list)
-        median_rtt = -1.0
-        max_rtt = -1.0
+        filtered = filter(lambda a: a != -1.000, rtt_list)
+        median_rtt = -1.000
+        max_rtt = -1.000
         if len(filtered) != 0:
             median_rtt = round(numpy.median(filtered), int(3 - math.ceil(math.log10(abs(numpy.median(filtered))))))
             max_rtt = round(numpy.amax(filtered), int(3 - math.ceil(math.log10(abs(numpy.amax(filtered))))))
@@ -67,8 +67,27 @@ if function_name == "run_ping":
         json.dump(aggregated_ping_dict, fp)
 
 elif function_name == "plot_median_rtt_cdf":
-    pass
+    agg_ping_results_filename = sys.argv[2]
+    output_cdf_filename = sys.argv[3]
+    json_file = open(agg_ping_results_filename)
+    json_str = json_file.read()
+    aggregated_ping_dict = json.loads(json_str)[0]
+    median_rtt_list = []
+    for key in aggregated_ping_dict.keys():
+        if aggregated_ping_dict[key]["median_rtt"] != -1.000
+            median_rtt_list += [aggregated_ping_dict[key]["median_rtt"]]
+    median_rtt_list.sort()
+    y_list = range(1, len(median_rtt_list) + 1)
+    for i in y_list:
+        y_list[i] = float(i/(len(median_rtt_list)))
+    plot.plot(median_rtt_list, y_list, label="median rtt cdf")
+    plot.grid()
+    plot.xlabel("median_rtt")
+    plot.ylabel("cumulative fraction")
+    plot.show()
+
 elif function_name == "plot_ping_cdf":
-    pass
+    raw_ping_results_filename = sys.argv[2]
+    output_cdf_filename = sys.argv[3]
 else:
     print "The function you have called does not exist."
