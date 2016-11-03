@@ -87,9 +87,10 @@ elif function_name == "plot_median_rtt_cdf":
     print median_rtt_list
     print y_list
     plot.plot(median_rtt_list, y_list, label="median rtt cdf")
+    plot.legend()
     plot.grid()
-    plot.xlabel("median_rtt")
-    plot.ylabel("cumulative fraction")
+    plot.xlabel("Median RTT")
+    plot.ylabel("Cumulative Fraction of Websites")
     with backend_pdf.PdfPages(output_cdf_filename) as pdf:
         pdf.savefig()
     plot.show()
@@ -97,5 +98,6 @@ elif function_name == "plot_median_rtt_cdf":
 elif function_name == "plot_ping_cdf":
     raw_ping_results_filename = sys.argv[2]
     output_cdf_filename = sys.argv[3]
+
 else:
     print "The function you have called does not exist."
