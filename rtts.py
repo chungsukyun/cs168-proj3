@@ -136,7 +136,7 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
     with backend_pdf.PdfPages(output_cdf_filename) as pdf:
         pdf.savefig()
 
-elif function_name == "plot_median_rtt_cdf":
+if function_name == "plot_median_rtt_cdf":
     agg_ping_results_filename = sys.argv[2]
     output_cdf_filename = sys.argv[3]
     plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
@@ -180,7 +180,7 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
         pdf.savefig()
 
 
-elif function_name == "plot_ping_cdf":
+if function_name == "plot_ping_cdf":
     raw_ping_results_filename = sys.argv[2]
     output_cdf_filename = sys.argv[3]
     plot_ping_cdf(raw_ping_results_filename, output_cdf_filename)
