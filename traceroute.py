@@ -79,7 +79,8 @@ if function_name == "run_traceroute":
                     entry += [{"name": Name, "ip": IP, "ASN": ASN}]
                 name_hops += [entry]
         traceroute_dict[name] = name_hops
-    print traceroute_dict
+    with open(output_filename, "w") as fp:
+        json.dump(traceroute_dict, fp)
 
 
 elif function_name == "parse_traceroute":
