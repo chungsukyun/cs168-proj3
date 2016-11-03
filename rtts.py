@@ -73,7 +73,7 @@ elif function_name == "plot_median_rtt_cdf":
     output_cdf_filename = sys.argv[3]
     json_file = open(agg_ping_results_filename)
     json_str = json_file.read()
-    aggregated_ping_dict = json.loads(json_str)[0]
+    aggregated_ping_dict = json.loads(json_str)
     median_rtt_list = []
     for key in aggregated_ping_dict.keys():
         if aggregated_ping_dict[key]["median_rtt"] != -1.000:
