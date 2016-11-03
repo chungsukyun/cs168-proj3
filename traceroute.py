@@ -19,7 +19,8 @@ if function_name == "run_traceroute":
     print hostnames
     for name in hostnames:
         ls_output, err = subprocess.Popen(["traceroute", "-A", "-q", str(num_packets), name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
-        print ls_output
+        ls_output_lines = ls_output.splitlines()
+        print ls_output_lines[1][0]
 
 elif function_name == "parse_traceroute":
     pass
