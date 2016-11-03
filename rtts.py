@@ -74,7 +74,7 @@ elif function_name == "plot_median_rtt_cdf":
     aggregated_ping_dict = json.loads(json_str)[0]
     median_rtt_list = []
     for key in aggregated_ping_dict.keys():
-        if aggregated_ping_dict[key]["median_rtt"] != -1.000
+        if aggregated_ping_dict[key]["median_rtt"] != -1.000:
             median_rtt_list += [aggregated_ping_dict[key]["median_rtt"]]
     median_rtt_list.sort()
     y_list = range(1, len(median_rtt_list) + 1)
