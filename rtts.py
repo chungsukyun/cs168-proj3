@@ -44,7 +44,7 @@ if function_name == "run_ping":
         while packet_counter < int(num_packets):
             line = ls_output_lines[line_counter]
             line = line.split()
-            if find_string(line, "icmp_seq=")[9:] == "":
+            if find_string(line, "icmp_seq=") == "":
                 rtt_list += [-1.000]
                 drop_counter += 1
             elif int(find_string(line, "icmp_seq=")[9:]) != packet_counter:
