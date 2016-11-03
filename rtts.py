@@ -4,6 +4,7 @@ import sys
 import numpy
 import math
 import matplotlib.pyplot as plot
+from matplotlib.backends import backend_pdf
 
 function_name = sys.argv[1]
 
@@ -31,6 +32,7 @@ if function_name == "run_ping":
     aggregated_ping_dict = {}
 
     for name in hostnames:
+        print name
         ls_output, err = subprocess.Popen(["ping", "-c", num_packets, name], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
         ls_output_lines = ls_output.splitlines()
         rtt_list = []
@@ -84,6 +86,8 @@ elif function_name == "plot_median_rtt_cdf":
     plot.grid()
     plot.xlabel("median_rtt")
     plot.ylabel("cumulative fraction")
+    with backend_pdf.PdfPages(output_cdf_filename) as pdf:
+        pdf.savefig()
     plot.show()
 
 elif function_name == "plot_ping_cdf":
