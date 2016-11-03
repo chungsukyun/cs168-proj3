@@ -84,6 +84,8 @@ elif function_name == "plot_median_rtt_cdf":
     y_list = range(1, len(median_rtt_list) + 1)
     for i in range(len(median_rtt_list)):
         y_list[i] = float(y_list[i]/(len(median_rtt_list)))
+    print median_rtt_list
+    print y_list
     plot.plot(median_rtt_list, y_list, label="median rtt cdf")
     plot.grid()
     plot.xlabel("median_rtt")
