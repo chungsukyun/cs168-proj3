@@ -41,7 +41,7 @@ def run_traceroute(hostname_file_name, num_packets, output_filename):
         hostnames += [line]
         line = hostname_file.readline().rstrip()
     # traceroute_dict = {}
-    timestamp = string(time.time())
+    timestamp = str(time.time())
     #datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
     # traceroute_dict["timestamp"] = timestamp
     big_string = ""
