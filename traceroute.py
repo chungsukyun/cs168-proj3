@@ -106,6 +106,7 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
         if find_num_names(line) == 0:
             name_hops += [[{"name": "None", "ip": "None", "ASN": "None"}]]
         else:
+            print line
             line = line.split()
             entry = []
             for i in range(find_num_names(line)):
