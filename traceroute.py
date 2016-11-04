@@ -40,45 +40,54 @@ def run_traceroute(hostname_file_name, num_packets, output_filename):
     while line != "":
         hostnames += [line]
         line = hostname_file.readline().rstrip()
-    traceroute_dict = {}
-    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
-    traceroute_dict["timestamp"] = timestamp
+    # traceroute_dict = {}
+    timestamp = string(time.time())
+    #datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
+    # traceroute_dict["timestamp"] = timestamp
+    big_string = ""
+    first = True
     for name in hostnames:
         name_hops = []
         ls_output, err = subprocess.Popen(["traceroute", "-A", "-q", str(num_packets), name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
-        ls_output_lines = ls_output.splitlines()
-        print ls_output
-        for line in ls_output_lines:
-            line = line.split()
-            if line[0] == "traceroute":
-                continue
-            if find_num_names(line) == 0:
-                name_hops += [[{"name": "None", "ip": "None", "ASN": "None"}]]
-            else:
-                entry = []
-                for i in range(find_num_names(line)):
-                    ASN = ""
-                    IP = ""
-                    Name = ""
-                    j = find_index_string(line, "[")
-                    if line[j][1] == "*":
-                        ASN = "None"
-                    else:
-                        ASN = line[j][3:(len(line[j])-1)]
-                    if line[j-1][1] == "*":
-                        IP = "None"
-                    else:
-                        IP = line[j-1][1:(len(line[j-1])-1)]
-                    if line[j-2][0] == "*":
-                        Name = "None"
-                    else:
-                        Name = line[j-2]
-                    line = line[j+1:]
-                    entry += [{"name": Name, "ip": IP, "ASN": ASN}]
-                name_hops += [entry]
-        traceroute_dict[name] = name_hops
+        if first == True:
+            big_string = ls_output
+            first = False
+        else:
+            big_string += ls_output
     with open(output_filename, "w") as fp:
-        json.dump(traceroute_dict, fp)
+        json.dump(big_string, fp)
+    #     ls_output_lines = ls_output.splitlines()
+    #     for line in ls_output_lines:
+    #         line = line.split()
+    #         if line[0] == "traceroute":
+    #             continue
+    #         if find_num_names(line) == 0:
+    #             name_hops += [[{"name": "None", "ip": "None", "ASN": "None"}]]
+    #         else:
+    #             entry = []
+    #             for i in range(find_num_names(line)):
+    #                 ASN = ""
+    #                 IP = ""
+    #                 Name = ""
+    #                 j = find_index_string(line, "[")
+    #                 if line[j][1] == "*":
+    #                     ASN = "None"
+    #                 else:
+    #                     ASN = line[j][3:(len(line[j])-1)]
+    #                 if line[j-1][1] == "*":
+    #                     IP = "None"
+    #                 else:
+    #                     IP = line[j-1][1:(len(line[j-1])-1)]
+    #                 if line[j-2][0] == "*":
+    #                     Name = "None"
+    #                 else:
+    #                     Name = line[j-2]
+    #                 line = line[j+1:]
+    #                 entry += [{"name": Name, "ip": IP, "ASN": ASN}]
+    #             name_hops += [entry]
+    #     traceroute_dict[name] = name_hops
+    # with open(output_filename, "w") as fp:
+    #     json.dump(traceroute_dict, fp)
 
 
 if function_name == "run_traceroute":
