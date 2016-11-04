@@ -200,6 +200,3 @@ if function_name == "plot_ping_cdf":
     # plot.ylabel("Cumulative Fraction of RTTs")
     # with backend_pdf.PdfPages(output_cdf_filename) as pdf:
     #     pdf.savefig()
-
-else:
-    print "The function you have called does not exist."

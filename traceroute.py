@@ -33,16 +33,13 @@ def find_string(lst, s):
         i += 1
     return ""
 
-if function_name == "run_traceroute":
+def run_traceroute(hostname_file_name, num_packets, output_filename):
     hostnames = []
-    hostname_file_name = sys.argv[2]
     hostname_file = open(hostname_file_name, 'r')
     line = hostname_file.readline().rstrip()
     while line != "":
         hostnames += [line]
         line = hostname_file.readline().rstrip()
-    num_packets = int(sys.argv[3])
-    output_filename = sys.argv[4]
     traceroute_dict = {}
     timestamp = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
     traceroute_dict["timestamp"] = timestamp
@@ -50,6 +47,7 @@ if function_name == "run_traceroute":
         name_hops = []
         ls_output, err = subprocess.Popen(["traceroute", "-A", "-q", str(num_packets), name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
         ls_output_lines = ls_output.splitlines()
+        print ls_output
         for line in ls_output_lines:
             line = line.split()
             if line[0] == "traceroute":
@@ -82,6 +80,12 @@ if function_name == "run_traceroute":
     with open(output_filename, "w") as fp:
         json.dump(traceroute_dict, fp)
 
+
+if function_name == "run_traceroute":
+    hostname_file_name = sys.argv[2]
+    num_packets = int(sys.argv[3])
+    output_filename = sys.argv[4]
+    run_traceroute(hostname_file_name, num_packets, output_filename)
 
 elif function_name == "parse_traceroute":
     pass
