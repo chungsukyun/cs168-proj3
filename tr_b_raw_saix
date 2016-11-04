@@ -1,0 +1,17 @@
+timestamp: 1478237945.56
+traceroute to tpr-route-server.saix.net (196.25.9.46), 30 hops max, 60 byte packets
+ 1  soda3b-gw.EECS.Berkeley.EDU (128.32.112.1) [AS25]  1.435 ms  2.440 ms  2.436 ms  3.329 ms  4.170 ms
+ 2  soda-288-core-228.EECS.Berkeley.EDU (169.229.63.228) [AS25]  5.872 ms  5.918 ms  5.917 ms  5.960 ms  5.958 ms
+ 3  edge-10g-soda.EECS.Berkeley.EDU (169.229.59.241) [AS25]  2.201 ms  2.252 ms  2.252 ms  2.301 ms  2.300 ms
+ 4  t1-2.inr-202-reccev.berkeley.edu (128.32.255.57) [AS25]  0.849 ms  0.494 ms t1-2.inr-201-sut.berkeley.edu (128.32.255.53) [AS25]  0.614 ms  13.967 ms t1-2.inr-202-reccev.berkeley.edu (128.32.255.57) [AS25]  13.971 ms
+ 5  xe-0-2-0.inr-001-sut.berkeley.edu (128.32.0.64) [AS25]  13.966 ms  14.021 ms xe-5-2-0.inr-001-sut.berkeley.edu (128.32.0.66) [AS25]  14.122 ms  14.138 ms xe-0-2-0.inr-001-sut.berkeley.edu (128.32.0.64) [AS25]  14.432 ms
+ 6  dc-sfo-agg-1--ucb-10ge.cenic.net (137.164.50.16) [AS2152]  15.263 ms  15.278 ms  15.276 ms  15.276 ms  15.273 ms
+ 7  dc-svl-agg4--sfo-agg1-10ge-1.cenic.net (137.164.22.27) [AS2152]  16.413 ms  16.468 ms  16.461 ms  3.013 ms  2.888 ms
+ 8  xe-0-1-0.0.rtr.paix.net.internet2.edu (64.57.21.4) [*]  2.939 ms  2.936 ms xe-1-1-0.0.rtr.paix.net.internet2.edu (64.57.21.6) [*]  3.009 ms  3.110 ms xe-0-1-0.0.rtr.paix.net.internet2.edu (64.57.21.4) [*]  3.111 ms
+ 9  xe-2-2-0.80.rtsw.losa.net.internet2.edu (64.57.20.124) [*]  11.027 ms  11.037 ms  11.188 ms  11.192 ms  11.189 ms
+10  et-4-0-0.80.rtr.wilc.net.internet2.edu (64.57.20.127) [*]  11.307 ms  11.309 ms  11.362 ms  11.359 ms  11.400 ms
+11  pccw-global.as3491.any2ix.coresite.com (206.72.210.49) [AS14365/AS4039/AS1784]  11.174 ms  11.102 ms  11.104 ms  11.227 ms  11.228 ms
+12  tenge9-4.br01.frf06.pccwbtn.net (63.218.232.37) [AS3491]  161.250 ms  170.752 ms  170.841 ms  161.345 ms  161.481 ms
+13  63-218-233-14.static.pccwglobal.net (63.218.233.14) [AS3491]  160.890 ms  172.505 ms  160.898 ms  162.794 ms  163.639 ms
+14  tpr-ip-esr-1-gig-6-0-0.telkom-ipnet.co.za (196.43.10.86) [AS5713]  347.254 ms  356.864 ms  356.857 ms  347.406 ms  344.267 ms
+15  tpr-route-server.saix.net (196.25.9.46) [AS5713]  330.326 ms * * *  339.950 ms
