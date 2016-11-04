@@ -48,8 +48,7 @@ def run_traceroute(hostname_file_name, num_packets, output_filename):
     for name in hostnames:
         # name_hops = []
         ls_output, err = subprocess.Popen(["traceroute", "-A", "-q", str(num_packets), name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
-        else:
-            big_string += ls_output
+        big_string += ls_output
     target = open(output_filename, "w")
     target.write(big_string)
     #     ls_output_lines = ls_output.splitlines()
