@@ -54,8 +54,8 @@ def run_traceroute(hostname_file_name, num_packets, output_filename):
             first = False
         else:
             big_string += ls_output
-    with open(output_filename, "w") as fp:
-        json.dump(big_string, fp)
+    target = open(output_filename, "w")
+    target.write(big_string)
     #     ls_output_lines = ls_output.splitlines()
     #     for line in ls_output_lines:
     #         line = line.split()
@@ -97,6 +97,7 @@ if function_name == "run_traceroute":
     run_traceroute(hostname_file_name, num_packets, output_filename)
 
 elif function_name == "parse_traceroute":
-    pass
+    raw_traceroute_filename = sys.argv[2]
+
 else:
     print "The function you have called does not exist."
