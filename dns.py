@@ -29,18 +29,25 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
             i = 1
             print ls_output
             while i < len(time_lines) - 1:
+                query_dict = {}
                 time = int(time_lines[i+1].split()[6])
+                query_dict["Time in millis"] = time
                 lines = time_lines[i].splitlines()[1:]
+                ans_list = []
                 for line in lines:
                     if len(line) == 0:
                         continue
-                    query_dict = {}
+                    ans_dict = {}
                     line = line.split()
-                    query_dict["Queried name"] = line[0]
-                    query_dict["TTL"] = int(line[1])
-                    query_dict["Type"] = line[3]
-                    query_dict["Data"] = line[4]
+                    ans_dict["Queried name"] = line[0]
+                    ans_dict["TTL"] = int(line[1])
+                    ans_dict["Type"] = line[3]
+                    ans_dict["Data"] = line[4]
+                    ans_list += [ans_dict]
+                query_dict["Answers"] = ans_list
+                query_list += [query_dict]
                 i += 1
+            name_dict["Queries"] = query_list
 
 
             print ls_output
