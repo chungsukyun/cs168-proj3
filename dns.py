@@ -50,9 +50,8 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
                     i += 1
                 name_dict["Queries"] = query_list
                 json_list += [name_dict]
-    # with open(output_filename, "w") as fp:
-    #     json.dump(traceroute_dict, fp)
-            print json_list
+    with open(output_filename, "w") as fp:
+        json.dump(json_list, fp)
 
 if function_name == "run_dig":
     hostname_filename = sys.argv[2]
