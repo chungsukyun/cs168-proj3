@@ -27,7 +27,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
             query_list = []
             time_lines = ls_output.split(";;")
             i = 1
-            while i < len(time_lines)
+            # while i < len(time_lines)
 
             print ls_output
 
