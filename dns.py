@@ -25,7 +25,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
             ls_output, err = subprocess.Popen(["dig", "+trace", "+tries=1", "+nofail", name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
             name_dict["Success"] = True
             query_list = []
-            time_lines = ls_output.split(";;")
+            time_lines = ls_output.split(";")
             print time_lines[0]
 
 if function_name == "run_dig":
