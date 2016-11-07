@@ -10,7 +10,7 @@ function_name = sys.argv[1]
 
 def run_dig(hostname_filename, output_filename, dns_query_server):
     hostnames = []
-    hostname_file = open(hostname_file_name, 'r')
+    hostname_file = open(hostname_filename, 'r')
     line = hostname_file.readline().rstrip()
     while line != "":
         hostnames += [line]
