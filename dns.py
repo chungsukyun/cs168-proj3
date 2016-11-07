@@ -30,11 +30,11 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
             print ls_output
             while i < len(time_lines) - 1:
                 time = int(time_lines[i+1].split()[6])
-                print time
                 lines = time_lines[i].splitlines()[1:]
                 for line in lines:
                     query_dict = {}
                     line = line.split()
+                    print line
                     query_dict["Queried name"] = line[0]
                     query_dict["TTL"] = int(line[1])
                     query_dict["Type"] = line[3]
