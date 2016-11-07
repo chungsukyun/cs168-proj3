@@ -15,13 +15,14 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
     while line != "":
         hostnames += [line]
         line = hostname_file.readline().rstrip()
+    json_list = []
     for name in hostnames:
-        print name
         if dns_query_server != None:
             ls_output, err = subprocess.Popen(["dig", name, "@" + dns_query_server], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
         else:
             ls_output, err = subprocess.Popen(["dig", "+trace", "+tries=1", "+nofail", name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
         print ls_output
+        
 
 if function_name == "run_dig":
     hostname_filename = sys.argv[2]
