@@ -17,7 +17,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
         line = hostname_file.readline().rstrip()
     for name in hostnames:
         print name
-        if dns_query_server == None:
+        if dns_query_server != None:
             ls_output, err = subprocess.Popen(["dig", name, "@" + dns_query_server], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
         else:
             ls_output, err = subprocess.Popen(["dig", "+trace", "+tries=1", "+nofail", name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
