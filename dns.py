@@ -48,9 +48,8 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
                 query_list += [query_dict]
                 i += 1
             name_dict["Queries"] = query_list
-
-
             print ls_output
+            print name_dict
 
 if function_name == "run_dig":
     hostname_filename = sys.argv[2]
