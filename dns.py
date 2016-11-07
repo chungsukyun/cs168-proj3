@@ -39,6 +39,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
                     query_dict["TTL"] = int(line[1])
                     query_dict["Type"] = line[3]
                     query_dict["Data"] = line[4]
+                i += 1
 
 
             print ls_output
