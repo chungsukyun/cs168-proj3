@@ -26,7 +26,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
             name_dict["Success"] = True
             query_list = []
             time_lines = ls_output.split(";;")
-            print time_lines[2]
+            print time_lines[3]
 
 if function_name == "run_dig":
     hostname_filename = sys.argv[2]
