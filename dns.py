@@ -22,11 +22,13 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
         if dns_query_server != None:
             ls_output, err = subprocess.Popen(["dig", name, "@" + dns_query_server], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
         else:
-            ls_output, err = subprocess.Popen(["dig", "+trace", "+tries=1", "+nofail", name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
+            ls_output, err = subprocess.Popen(["dig", "+trace", "+tries=1", "+nofail", "+nodnssec", name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
             name_dict["Success"] = True
             query_list = []
             time_lines = ls_output.split(";;")
-            i = 3
+            i = 1
+            while i < len(time_lines)
+
             print ls_output
 
 if function_name == "run_dig":
