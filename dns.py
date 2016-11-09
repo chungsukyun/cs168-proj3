@@ -27,7 +27,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
                 query_list = []
                 for query in queries:
                     query_dict = {}
-                    print query.splitlines()[-5].split()[3]
+                    query_dict["Time in millis"] = int(query.splitlines()[-5].split()[3])
                     query = query.split(";;")[6:]
                     ans_list = []
                     for section in query:
