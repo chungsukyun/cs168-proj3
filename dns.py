@@ -23,7 +23,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
             if dns_query_server != None:
                 ls_output, err = subprocess.Popen(["dig", name, "@" + dns_query_server], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
                 queries = ls_output.split("; <")[1:]
-                print query
+                print queries
                 for query in queries:
                     pass
             else:
