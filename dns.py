@@ -23,7 +23,9 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
             if dns_query_server != None:
                 ls_output, err = subprocess.Popen(["dig", name, "@" + dns_query_server], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
                 queries = ls_output.split("; <")[1:]
-                print queries[0]
+                print query
+                for query in queries:
+
             else:
                 ls_output, err = subprocess.Popen(["dig", "+trace", "+tries=1", "+nofail", "+nodnssec", name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
                 name_dict["Success"] = True
