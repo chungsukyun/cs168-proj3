@@ -80,6 +80,7 @@ def get_average_ttls(filename):
     f = open(filename, "r")
     f_str = f.read()
     f_list = json.loads(f_str)
+    print f_list
 
 if function_name == "run_dig":
     hostname_filename = sys.argv[2]
