@@ -23,12 +23,12 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
             if dns_query_server != None:
                 ls_output, err = subprocess.Popen(["dig", name, "@" + dns_query_server], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
                 queries = ls_output.split("; <")[1:]
-                print queries.splitlines()[-4]
                 name_dict["Success"] = True
                 query_list = []
                 for query in queries:
                     query_dict = {}
                     query = query.split(";;")[6:]
+                    print query[-4]
                     ans_list = []
                     for section in query:
                         section = section.splitlines()[1:]
