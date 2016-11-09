@@ -22,13 +22,13 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
             name_dict["Name"] = name
             if dns_query_server != None:
                 ls_output, err = subprocess.Popen(["dig", name, "@" + dns_query_server], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
+                print ls_output
             else:
                 ls_output, err = subprocess.Popen(["dig", "+trace", "+tries=1", "+nofail", "+nodnssec", name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
                 name_dict["Success"] = True
                 query_list = []
                 time_lines = ls_output.split(";;")
                 i = 1
-                print ls_output
                 while i < len(time_lines) - 1:
                     query_dict = {}
                     time = int(time_lines[i+1].split()[6])
@@ -53,6 +53,11 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
     with open(output_filename, "w") as fp:
         json.dump(json_list, fp)
 
+def get_average_ttls(filename):
+    f = open(filename, "r")
+    f_str = f.read()
+    f_list = json.loads(f_str)
+
 if function_name == "run_dig":
     hostname_filename = sys.argv[2]
     output_filename = sys.argv[3]
@@ -61,3 +66,6 @@ if function_name == "run_dig":
     else:
         dns_query_server = None
     run_dig(hostname_filename, output_filename, dns_query_server)
+elif function_name == "get_average_ttls":
+    filename = sys.argv[2]
+    get_average_ttls(filename)
