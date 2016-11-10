@@ -240,3 +240,7 @@ elif function_name == "generate_time_cdfs":
     json_filename = sys.argv[2]
     output_filename = sys.argv[3]
     generate_time_cdfs(json_filename, output_filename)
+elif function_name == "count_different_dns_responses":
+    filename1 = sys.argv[2]
+    filename2 = sys.argv[3]
+    count_different_dns_responses(filename1, filename2)
