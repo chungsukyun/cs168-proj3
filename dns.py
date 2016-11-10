@@ -148,6 +148,10 @@ def get_average_ttls(filename):
         if len(terminating_list_1) != 0:
             tl1 = numpy.mean(terminating_list_1)
             terminating_list += [tl1]
+    print root_list
+    print tld_list
+    print other_name_list
+    print terminating_list
     if len(root_list) != 0:
         rld = numpy.mean(root_list)
     if len(tld_list) != 0:
