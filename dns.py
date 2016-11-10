@@ -214,7 +214,7 @@ def generate_time_cdfs(json_filename, output_filename):
     for i in range(len(terminating_list)):
         y_list2[i] = float(y_list2[i])/float(len(terminating_list))
     plot.plot(whole_list, y_list1, label="total time cdf")
-    plot.plot(terminating_list, ylist2, label="final request time cdf")
+    plot.plot(terminating_list, y_list2, label="final request time cdf")
     plot.legend()
     plot.grid()
     plot.xlabel("time in millis")
