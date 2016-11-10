@@ -51,6 +51,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
                 name_dict["Success"] = True
                 query_list = []
                 time_lines = ls_output.split(";;")
+                print ls_output
                 i = 1
                 while i < len(time_lines) - 1:
                     query_dict = {}
@@ -80,7 +81,11 @@ def get_average_ttls(filename):
     f = open(filename, "r")
     f_str = f.read()
     f_list = json.loads(f_str)
-    print f_list
+    for dig in f_list:
+        for query in dig["Queries"]:
+            for answer in query["Answers"]:
+                
+
 
 if function_name == "run_dig":
     hostname_filename = sys.argv[2]
