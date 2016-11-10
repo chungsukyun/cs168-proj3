@@ -167,21 +167,17 @@ def get_average_times(filename):
     wl = 0
     tl = 0
     for dig in f_list:
-        whole_list_1 = []
-        terminating_list_1 = []
-        wl1 = 0
-        tl1 = 0
+        time = 0
+        terminating_time = 0
         for query in dig["Queries"]:
-            whole_list_1 += [query["Time in millis"]]
+            time += query["Time in millis"]
             for answer in query["Answers"]:
                 if answer["Type"] == "A" or answer["Type"] == "CNAME":
-                    terminating_list_1 += [query["Time in millis"]]
-        if len(whole_list_1) != 0:
-            wl1 = numpy.mean(whole_list_1)
-            whole_list += [wl1]
-        if len(terminating_list_1) != 0:
-            tl1 = numpy.mean(terminating_list_1)
-            terminating_list += [tl1]
+                    terminating_time += query["Time in millis"]
+        if time != 0:
+            whole_list += [time]
+        if terminating_time != 0:
+            terminating_list += [terminating_time]
     if len(whole_list) != 0:
         wl = numpy.mean(whole_list)
     if len(terminating_list) != 0:
