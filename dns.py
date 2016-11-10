@@ -148,10 +148,6 @@ def get_average_ttls(filename):
         if len(terminating_list_1) != 0:
             tl1 = numpy.mean(terminating_list_1)
             terminating_list += [tl1]
-    print root_list
-    print tld_list
-    print other_name_list
-    print terminating_list
     if len(root_list) != 0:
         rld = numpy.mean(root_list)
     if len(tld_list) != 0:
@@ -160,8 +156,38 @@ def get_average_ttls(filename):
         onl = numpy.mean(other_name_list)
     if len(terminating_list) != 0:
         tl = numpy.mean(terminating_list)
-    print [rld, tld, onl, tl]
     return [rld, tld, onl, tl]
+
+def get_average_times(filename):
+    f = open(filename, "r")
+    f_str = f.read()
+    f_list = json.loads(f_str)
+    whole_list = []
+    terminating_list = []
+    wl = 0
+    tl = 0
+    for dig in f_list:
+        whole_list_1 = []
+        terminating_list_1 = []
+        wl1 = 0
+        tl1 = 0
+        for query in dig["Queries"]:
+            whole_list_1 += [query["Time in millis"]]
+            for answer in query["Answers"]:
+                if answer["Type"] == "A" or answer["Type"] == "CNAME":
+                    terminating_list_1 += [query["Time in millis"]]
+        if len(whole_list_1) != 0:
+            wl1 = numpy.mean(whole_list_1)
+            whole_list += [wl1]
+        if len(terminating_list_1) != 0:
+            tl1 = numpy.mean(terminating_list_1)
+            terminating_list += [tl1]
+    if len(whole_list) != 0:
+        wl = numpy.mean(whole_list)
+    if len(terminating_list) != 0:
+        tl = numpy.mean(terminating_list)
+    print [wl, tl]
+    return [wl, tl]
 
 
 if function_name == "run_dig":
@@ -175,3 +201,6 @@ if function_name == "run_dig":
 elif function_name == "get_average_ttls":
     filename = sys.argv[2]
     get_average_ttls(filename)
+elif function_name == "get_average_times":
+    filename = sys.argv[2]
+    get_average_times(filename)
