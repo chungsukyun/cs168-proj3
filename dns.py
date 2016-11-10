@@ -84,7 +84,7 @@ def get_average_ttls(filename):
     for dig in f_list:
         for query in dig["Queries"]:
             for answer in query["Answers"]:
-                
+                pass
 
 
 if function_name == "run_dig":
