@@ -5,7 +5,10 @@ import numpy
 import math
 import time
 import datetime
-
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plot
+from matplotlib.backends import backend_pdf
 function_name = sys.argv[1]
 
 def dot_count(string):
