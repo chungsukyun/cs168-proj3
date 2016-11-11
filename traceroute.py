@@ -135,18 +135,15 @@ def question():
     file_string = f.read()
     file_lines = file_string.splitlines()
     hostnames = ["google.com", "facebook.com", "www.berkeley.edu", "allspice.lcs.mit.edu", "todayhumor.co.kr", "www.city.kobe.lg.jp", "www.vutbr.cz", "zanvarsity.ac.tz"]
-    dic = {}
-    for hostname in hostnames:
-        dic[hostname] = []
+    blank = []
     for thing in file_lines:
         line = json.loads(thing)
         for hostname in hostnames:
             lst = line[hostname]
-            final = lst[len(lst)-1]
-            for i in final:
-                dic[hostname] += [i["ip"]]
-    for hostname in hostnames:
-        print dic[hostname]
+            for hop in lst:
+                if len(hop) > 1:
+                    blank += [hostname]
+    print blank
 
 if function_name == "run_traceroute":
     hostname_file_name = sys.argv[2]
