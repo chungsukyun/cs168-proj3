@@ -224,6 +224,14 @@ def generate_time_cdfs(json_filename, output_filename):
             terminating_list += [terminating_time]
     whole_list.sort()
     terminating_list.sort()
+    i = 0
+    while i < len(whole_list):
+        whole_list[i] = math.log(whole_list[i])
+        i += 1
+    i = 0
+    while i < len(terminating_list):
+        terminating_list[i] = math.log(terminating_list[i])
+        i += 1
     y_list1 = range(1, len(whole_list) + 1)
     y_list2 = range(1, len(terminating_list) + 1)
     for i in range(len(whole_list)):
