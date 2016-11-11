@@ -166,7 +166,7 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
     rtt_list = []
     for key in raw.keys():
         for rtt in raw_ping_dict[key]:
-            if rtt != -1.000
+            if rtt != -1.000:
                 rtt_list += [rtt]
     rtt_list.sort()
     y_list = range(1, len(rtt_list) + 1)
