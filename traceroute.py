@@ -71,6 +71,13 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
             hostname = line[2]
             name_hops = []
             continue
+        if line[:7] == "Tracing":
+            if hostname != "":
+                traceroute_dict[hostname] = name_hops
+            line = line.split()
+            hostname = line[5][1:-1]
+            name_hops = []
+            continue
         if find_num_names(line) == 0:
             name_hops += [[{"name": "None", "ip": "None", "ASN": "None"}]]
         else:
