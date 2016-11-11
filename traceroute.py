@@ -131,7 +131,7 @@ def append():
         fp.write("%s \n %s \n %s \n %s \n %s" % (f1_str, f2_str, f3_str, f4_str, f5_str))
 
 def question():
-    f = open(raw_traceroute_filename, "r")
+    f = open("tr_a.json", "r")
     file_string = f.read()
     file_lines = file_string.splitlines()
     hostnames = ["google.com", "facebook.com", "www.berkeley.edu", "allspice.lcs.mit.edu", "todayhumor.co.kr", "www.city.kobe.lg.jp", "www.vutbr.cz", "zanvarsity.ac.tz"]
