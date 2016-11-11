@@ -92,7 +92,7 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
                             break
                         x += 1
                     if b == True:
-                        ASN = line[j][3:x] + "/" + line[j][x+1:(len(line[j])-1)]
+                        ASN = line[j][3:x] + "/" + line[j][x+3:(len(line[j])-1)]
                         print ASN
                     else:
                         ASN = line[j][3:(len(line[j])-1)]
