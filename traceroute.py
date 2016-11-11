@@ -64,7 +64,7 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
             name_hops = line[11:]
             hostname = "timestamp"
             continue
-        if line[:10] == "traceroute" or line[:7] == "Tracing":
+        if line[:10] == "traceroute":
             if hostname != "":
                 traceroute_dict[hostname] = name_hops
             line = line.split()
