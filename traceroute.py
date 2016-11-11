@@ -72,6 +72,7 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
             name_hops = []
             continue
         if line[:7] == "Tracing":
+            print "hello"
             if hostname != "":
                 traceroute_dict[hostname] = name_hops
             line = line.split()
