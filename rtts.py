@@ -164,7 +164,7 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
     json_str = json_file.read()
     raw_ping_dict = json.loads(json_str)
     rtt_list = []
-    for key in raw.keys():
+    for key in raw_ping_dict.keys():
         for rtt in raw_ping_dict[key]:
             if rtt != -1.000:
                 rtt_list += [rtt]
