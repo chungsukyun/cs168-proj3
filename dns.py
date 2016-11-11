@@ -270,6 +270,8 @@ def count_different_dns_responses(filename1, filename2):
                 f2_dict[dig["Name"]] = [query_set]
             else:
                 f2_dict[dig["Name"]] += [query_set]
+    print f2_dict
+    print f1_dict
 
 if function_name == "run_dig":
     hostname_filename = sys.argv[2]
