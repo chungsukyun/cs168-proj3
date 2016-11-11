@@ -277,7 +277,7 @@ def count_different_dns_responses(filename1, filename2):
     for hostname in f1_dict:
         counter = set()
         for s in f1_dict[hostname]:
-            counter.add(s)
+            counter.add(frozenset(s))
         print counter
         if len(counter) >= 1:
             f1_diff += 1
