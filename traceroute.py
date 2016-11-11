@@ -144,7 +144,7 @@ def question():
             lst = line[hostname]
             final = lst[len(lst)-1]
             dic[hostname] += [final]
-
+    print dic
 
 if function_name == "run_traceroute":
     hostname_file_name = sys.argv[2]
