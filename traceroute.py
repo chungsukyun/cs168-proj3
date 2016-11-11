@@ -59,7 +59,7 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
     name_hops = []
     hostname = ""
     traceroute_dict = {}
-    pub = ["tpr-route-server.saix.net", "route-server.ip-plus.net", "route-views.oregon-ix.net", "route-server.eastern.allstream.com", "route-views.on.bb.telus.com"]
+    pub = ["tpr-route-server.saix.net", "route-server.ip-plus.net", "route-views.oregon-ix.net", "route-views.on.bb.telus.com"]
     for line in file_lines:
         if line[:10] == "timestamp:":
             name_hops = line[11:]
