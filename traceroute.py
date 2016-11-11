@@ -59,6 +59,7 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
     name_hops = []
     hostname = ""
     traceroute_dict = {}
+    pub = ["tpr-route-server.saix.net", "route-server.ip-plus.net", "route-views.oregon-ix.net", "route-server.eastern.allstream.com", "route-views.on.bb.telus.com"]
     for line in file_lines:
         if line[:10] == "timestamp:":
             name_hops = line[11:]
@@ -72,11 +73,11 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
             name_hops = []
             continue
         if line[:7] == "Tracing":
-            print "hello"
             if hostname != "":
                 traceroute_dict[hostname] = name_hops
             line = line.split()
-            hostname = line[5][1:-1]
+            hostname = pub[0]
+            pub = pub[1:]
             name_hops = []
             continue
         if find_num_names(line) == 0:
