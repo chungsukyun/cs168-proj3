@@ -55,6 +55,6 @@ Tracing the route to soda3b-gw.EECS.Berkeley.EDU (128.32.112.1)
 13 dc-oak-agg4--svl-agg4-100ge.cenic.net (137.164.46.144) [AS2152] 88 msec 84 msec 84 msec
 14 ucb--oak-agg4-10g.cenic.net (137.164.50.31) [AS2152] 92 msec 88 msec 88 msec
 15 t2-3.inr-202-reccev.berkeley.edu (128.32.0.39) [AS25] 88 msec t2-3.inr-201-sut.berkeley.edu (128.32.0.37) [AS25] 84 msec 84 msec
-16 reccev-eecs-br-10ge.eecs.berkeley.edu (128.32.255.58) [AS 25] 88 msec 84 msec 88 msec
+16 reccev-eecs-br-10ge.eecs.berkeley.edu (128.32.255.58) [AS25] 88 msec 84 msec 88 msec
 17 soda-10g-edge.EECS.Berkeley.EDU (169.229.59.242) [AS25] 140 msec 144 msec 140 msec
 18 soda3b-gw.EECS.Berkeley.EDU (128.32.112.1) [AS25] 144 msec 152 msec 180 msec
