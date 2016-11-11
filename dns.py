@@ -218,6 +218,8 @@ def generate_time_cdfs(json_filename, output_filename):
             terminating_list += [terminating_time]
     whole_list.sort()
     terminating_list.sort()
+    print whole_list
+    print terminating_list
     y_list1 = range(1, len(whole_list) + 1)
     y_list2 = range(1, len(terminating_list) + 1)
     for i in range(len(whole_list)):
@@ -292,7 +294,6 @@ def count_different_dns_responses(filename1, filename2):
             counter.add(frozenset(s))
         if len(counter) > 1:
             whole_diff += 1
-    print [f1_diff, whole_diff]
     return [f1_diff, whole_diff]
 
 

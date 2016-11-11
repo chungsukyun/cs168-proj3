@@ -51,38 +51,6 @@ def run_traceroute(hostname_file_name, num_packets, output_filename):
         big_string += ls_output
     target = open(output_filename, "w")
     target.write(big_string)
-    #     ls_output_lines = ls_output.splitlines()
-    #     for line in ls_output_lines:
-    #         line = line.split()
-    #         if line[0] == "traceroute":
-    #             continue
-    #         if find_num_names(line) == 0:
-    #             name_hops += [[{"name": "None", "ip": "None", "ASN": "None"}]]
-    #         else:
-    #             entry = []
-    #             for i in range(find_num_names(line)):
-    #                 ASN = ""
-    #                 IP = ""
-    #                 Name = ""
-    #                 j = find_index_string(line, "[")
-    #                 if line[j][1] == "*":
-    #                     ASN = "None"
-    #                 else:
-    #                     ASN = line[j][3:(len(line[j])-1)]
-    #                 if line[j-1][1] == "*":
-    #                     IP = "None"
-    #                 else:
-    #                     IP = line[j-1][1:(len(line[j-1])-1)]
-    #                 if line[j-2][0] == "*":
-    #                     Name = "None"
-    #                 else:
-    #                     Name = line[j-2]
-    #                 line = line[j+1:]
-    #                 entry += [{"name": Name, "ip": IP, "ASN": ASN}]
-    #             name_hops += [entry]
-    #     traceroute_dict[name] = name_hops
-    # with open(output_filename, "w") as fp:
-    #     json.dump(traceroute_dict, fp)
 
 def parse_traceroute(raw_traceroute_filename, output_filename):
     f = open(raw_traceroute_filename, "r")
@@ -96,7 +64,7 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
             name_hops = line[11:]
             hostname = "timestamp"
             continue
-        if line[:10] == "traceroute":
+        if line[:10] == "traceroute" or line[:7] == "Tracing":
             if hostname != "":
                 traceroute_dict[hostname] = name_hops
             line = line.split()
