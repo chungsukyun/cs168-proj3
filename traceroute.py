@@ -136,7 +136,8 @@ def question():
     file_lines = file_string.splitlines()
     hostnames = ["google.com", "facebook.com", "www.berkeley.edu", "allspice.lcs.mit.edu", "todayhumor.co.kr", "www.city.kobe.lg.jp", "www.vutbr.cz", "zanvarsity.ac.tz"]
     blank = []
-    for line in file_lines:
+    for thing in file_lines:
+        line = json.loads(thing)
         for hostname in hostnames:
             s = set()
             lst = line[hostname]
