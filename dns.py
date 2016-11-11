@@ -112,7 +112,10 @@ def get_average_ttls(filename):
             terminating_list_2 = []
             for answer in query["Answers"]:
                 if answer["Type"] == "A" or answer["Type"] == "CNAME":
-                    if dig["Name"] == answer["Queried name"]:
+                    test_name = answer["Queried name"]
+                    if test_name[len(test_name)-1] == ".":
+                        test_name = test_name[:len(test_name)-1]
+                    if dig["Name"] == test_name:
                         terminating_list_2 += [answer["TTL"]]
                 if answer["Queried name"] == ".":
                     root_list_2 += [answer["TTL"]]
