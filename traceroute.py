@@ -142,7 +142,7 @@ def question():
         line = json.loads(thing)
         for hostname in hostnames:
             lst = line[hostname]
-            final = lst[len(lst)-1]
+            final = lst[len(lst)-1]["ip"]
             dic[hostname] += [final]
     for hostname in hostnames:
         print dic[hostname]
