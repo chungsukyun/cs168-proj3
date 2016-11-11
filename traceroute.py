@@ -154,7 +154,9 @@ def question():
             h.add(frozenset(s))
         blank[hostname] = h
     for hostname in hostnames:
-        print blank[hostname]
+        print hostname
+        for s in blank[hostname]:
+            print s
 
 if function_name == "run_traceroute":
     hostname_file_name = sys.argv[2]
