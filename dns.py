@@ -217,12 +217,12 @@ def generate_time_cdfs(json_filename, output_filename):
                         terminating_time += query["Time in millis"]
         if time != 0:
             whole_list += [time]
+            if time == 30445:
+                print dig["Name"]
         if terminating_time != 0:
             terminating_list += [terminating_time]
     whole_list.sort()
     terminating_list.sort()
-    print whole_list
-    print terminating_list
     y_list1 = range(1, len(whole_list) + 1)
     y_list2 = range(1, len(terminating_list) + 1)
     for i in range(len(whole_list)):
