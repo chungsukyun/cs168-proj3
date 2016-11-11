@@ -111,7 +111,7 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
                     Name = line[j-2]
                 line = line[j+1:]
                 entry += [{"name": Name, "ip": IP, "ASN": ASN}]
-        name_hops += [entry]
+            name_hops += [entry]
     traceroute_dict[hostname] = name_hops
     with open(output_filename, "w") as fp:
         json.dump(traceroute_dict, fp)
@@ -153,7 +153,6 @@ def question():
                 for router in entry:
                     s.add(router["ip"])
             h.add(frozenset(s))
-            print "w"
         blank[hostname] = h
     for hostname in hostnames:
         print hostname
