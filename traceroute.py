@@ -81,20 +81,23 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
                 IP = ""
                 Name = ""
                 j = find_index_string(line, "(")
-                if line[j+1][1] == "*":
-                    ASN = "None"
-                else:
-                    x = 0
-                    b = False
-                    while x < len(line[j+1]):
-                        if line[j+1][x] == "/":
-                            b = True
-                            break
-                        x += 1
-                    if b == True:
-                        ASN = line[j+1][3:x] + "/" + line[j+1][x+3:(len(line[j+1])-1)]
+                if len(line) > j+1:
+                    if line[j+1][1] == "*":
+                        ASN = "None"
                     else:
-                        ASN = line[j+1][3:(len(line[j+1])-1)]
+                        x = 0
+                        b = False
+                        while x < len(line[j+1]):
+                            if line[j+1][x] == "/":
+                                b = True
+                                break
+                            x += 1
+                        if b == True:
+                            ASN = line[j+1][3:x] + "/" + line[j+1][x+3:(len(line[j+1])-1)]
+                        else:
+                            ASN = line[j+1][3:(len(line[j+1])-1)]
+                else:
+                    ASN = "None"
                 if line[j][1] == "*":
                     IP = "None"
                 else:
