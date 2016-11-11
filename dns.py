@@ -66,6 +66,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server):
                 i = 1
                 while i < len(time_lines) - 1:
                     query_dict = {}
+                    print time_lines[i+i]
                     time = int(time_lines[i+1].split()[6])
                     query_dict["Time in millis"] = time
                     lines = time_lines[i].splitlines()[1:]
