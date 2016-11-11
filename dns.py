@@ -292,6 +292,8 @@ def count_different_dns_responses(filename1, filename2):
             counter.add(frozenset(s))
         if len(counter) > 1:
             whole_diff += 1
+    print [f1_diff, whole_diff]
+    return [f1_diff, whole_diff]
 
 
 
