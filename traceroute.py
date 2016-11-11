@@ -99,6 +99,12 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
                     IP = "None"
                 else:
                     IP = line[j-1][1:(len(line[j-1])-1)]
+                    b = False
+                    for e in entry:
+                        if e["ip"] == IP:
+                            b = True
+                    if b == True:
+                        continue
                 if line[j-2][0] == "*":
                     Name = "None"
                 else:
@@ -124,6 +130,23 @@ def append():
     with open("tr_a.json", "w") as fp:
         fp.write("%s \n %s \n %s \n %s \n %s" % (f1_str, f2_str, f3_str, f4_str, f5_str))
 
+def question():
+    f = open(raw_traceroute_filename, "r")
+    file_string = f.read()
+    file_lines = file_string.splitlines()
+    hostnames = ["google.com", "facebook.com", "www.berkeley.edu", "allspice.lcs.mit.edu", "todayhumor.co.kr", "www.city.kobe.lg.jp", "www.vutbr.cz", "zanvarsity.ac.tz"]
+    blank = []
+    for line in file_lines:
+        for hostname in hostnames:
+            s = set()
+            lst = line[hostname]
+            for entry in lst:
+                for e in entry:
+                    s.add(e["ASN"])
+            blank += [s]
+    for i in blank:
+        print i
+
 if function_name == "run_traceroute":
     hostname_file_name = sys.argv[2]
     num_packets = int(sys.argv[3])
@@ -137,5 +160,7 @@ elif function_name == "parse_traceroute":
 
 elif function_name == "append":
     append()
+elif function_name == "question":
+    question()
 else:
     print "The function you have called does not exist."
