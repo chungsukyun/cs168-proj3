@@ -240,9 +240,36 @@ def count_different_dns_responses(filename1, filename2):
     f2_str = f2_read()
     f1_list = json.loads(f1_str)
     f2_list = json.loads(f2_str)
+    f1_dict = {}
+    f2_dict = {}
     for dig in f1_list:
-        for query in dig:
-            pass
+        for query in dig["Queries"]:
+            query_set = {}
+            for answer in query["Answers"]:
+                if answer["Type"] == "A" or answer["Type"] == "CNAME":
+                    test_name = answer["Queried name"]
+                    if test_name[len(test_name)-1] == ".":
+                        test_name = test_name[:len(test_name)-1]
+                    if dig["Name"] == test_name:
+                        query_set.add(answer["Data"])
+            if dig["Name"] not in f1_dict.keys():
+                f1_dict[dig["Name"]] = [query_set]
+            else:
+                f1_dict[dig["Name"]] += [query_set]
+    for dig in f2_list:
+        for query in dig["Queries"]:
+            query_set = {}
+            for answer in query["Answers"]:
+                if answer["Type"] == "A" or answer["Type"] == "CNAME":
+                    test_name = answer["Queried name"]
+                    if test_name[len(test_name)-1] == ".":
+                        test_name = test_name[:len(test_name)-1]
+                    if dig["Name"] == test_name:
+                        query_set.add(answer["Data"])
+            if dig["Name"] not in f2_dict.keys():
+                f2_dict[dig["Name"]] = [query_set]
+            else:
+                f2_dict[dig["Name"]] += [query_set]
 
 if function_name == "run_dig":
     hostname_filename = sys.argv[2]
