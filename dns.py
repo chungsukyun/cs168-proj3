@@ -244,7 +244,7 @@ def count_different_dns_responses(filename1, filename2):
     f2_dict = {}
     for dig in f1_list:
         for query in dig["Queries"]:
-            query_set = {}
+            query_set = set()
             for answer in query["Answers"]:
                 if answer["Type"] == "A" or answer["Type"] == "CNAME":
                     test_name = answer["Queried name"]
@@ -258,7 +258,7 @@ def count_different_dns_responses(filename1, filename2):
                 f1_dict[dig["Name"]] += [query_set]
     for dig in f2_list:
         for query in dig["Queries"]:
-            query_set = {}
+            query_set = set()
             for answer in query["Answers"]:
                 if answer["Type"] == "A" or answer["Type"] == "CNAME":
                     test_name = answer["Queried name"]
