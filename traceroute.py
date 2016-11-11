@@ -82,7 +82,7 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
                 Name = ""
                 j = find_index_string(line, "(")
                 if len(line) > j+1:
-                    if line[j+1][1] == "*":
+                    if (len(line[j+1]) < 2) or (line[j+1][1] == "*"):
                         ASN = "None"
                     else:
                         x = 0
