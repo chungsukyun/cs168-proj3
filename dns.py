@@ -252,14 +252,11 @@ def count_different_dns_responses(filename1, filename2):
                         test_name = test_name[:len(test_name)-1]
                     if dig["Name"] == test_name:
                         query_set.add(answer["Data"])
-            query_set = frozenset(i for i in query_set)
             if len(query_set) != 0:
                 if dig["Name"] not in f1_dict.keys():
-                    f1_dict[dig["Name"]] = set().add(query_set)
-                    print f1_dict[dig["Name"]]
+                    f1_dict[dig["Name"]] = [query_set]
                 else:
-                    print f1_dict[dig["Name"]]
-                    f1_dict[dig["Name"]] = f1_dict[dig["Name"]].add(query_set)
+                    f1_dict[dig["Name"]] += [query_set]
     for dig in f2_list:
         for query in dig["Queries"]:
             query_set = set()
@@ -270,12 +267,11 @@ def count_different_dns_responses(filename1, filename2):
                         test_name = test_name[:len(test_name)-1]
                     if dig["Name"] == test_name:
                         query_set.add(answer["Data"])
-            query_set = frozenset(query_set)
             if len(query_set) != 0:
                 if dig["Name"] not in f2_dict.keys():
-                    f2_dict[dig["Name"]] = set(query_set)
+                    f2_dict[dig["Name"]] = [query_set]
                 else:
-                    f2_dict[dig["Name"]] = f2_dict[dig["Name"]].add(query_set)
+                    f2_dict[dig["Name"]] += [query_set]
     print f1_dict
     print f2_dict
 
