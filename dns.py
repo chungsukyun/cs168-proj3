@@ -230,7 +230,7 @@ def generate_time_cdfs(json_filename, output_filename):
     plot.plot(terminating_list, y_list2, label="final request time cdf")
     plot.legend()
     plot.grid()
-    plot.set_x_scale('log')
+    plot.set_xscale('log')
     plot.xlabel("time in millis")
     plot.ylabel("cumulative fraction of successful dig calls")
     with backend_pdf.PdfPages(output_filename) as pdf:
