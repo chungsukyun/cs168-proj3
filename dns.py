@@ -164,7 +164,6 @@ def get_average_ttls(filename):
         onl = numpy.mean(other_name_list)
     if len(terminating_list) != 0:
         tl = numpy.mean(terminating_list)
-    print [rld, tld, onl, tl]
     return [rld, tld, onl, tl]
 
 def get_average_times(filename):
@@ -195,7 +194,6 @@ def get_average_times(filename):
         wl = numpy.mean(whole_list)
     if len(terminating_list) != 0:
         tl = numpy.mean(terminating_list)
-    print [wl, tl]
     return [wl, tl]
 
 def generate_time_cdfs(json_filename, output_filename):
@@ -218,20 +216,10 @@ def generate_time_cdfs(json_filename, output_filename):
                         terminating_time += query["Time in millis"]
         if time != 0:
             whole_list += [time]
-            if time == 30445:
-                print dig["Name"]
         if terminating_time != 0:
             terminating_list += [terminating_time]
     whole_list.sort()
     terminating_list.sort()
-    i = 0
-    while i < len(whole_list):
-        whole_list[i] = math.log(whole_list[i])
-        i += 1
-    i = 0
-    while i < len(terminating_list):
-        terminating_list[i] = math.log(terminating_list[i])
-        i += 1
     y_list1 = range(1, len(whole_list) + 1)
     y_list2 = range(1, len(terminating_list) + 1)
     for i in range(len(whole_list)):
@@ -242,6 +230,7 @@ def generate_time_cdfs(json_filename, output_filename):
     plot.plot(terminating_list, y_list2, label="final request time cdf")
     plot.legend()
     plot.grid()
+    plot.set_x_scale('log')
     plot.xlabel("time in millis")
     plot.ylabel("cumulative fraction of successful dig calls")
     with backend_pdf.PdfPages(output_filename) as pdf:
