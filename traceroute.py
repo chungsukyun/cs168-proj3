@@ -135,17 +135,27 @@ def question():
     file_string = f.read()
     file_lines = file_string.splitlines()
     hostnames = ["google.com", "facebook.com", "www.berkeley.edu", "allspice.lcs.mit.edu", "todayhumor.co.kr", "www.city.kobe.lg.jp", "www.vutbr.cz", "zanvarsity.ac.tz"]
-    blank = set()
+    d = {}
+    for hostname in hostnames:
+        d[hostname] = []
     for thing in file_lines:
         line = json.loads(thing)
         for hostname in hostnames:
-            lst = line[hostname]
-            for hop in lst:
-                if len(hop) > 1:
-                    print hop
-                    blank.add(hostname)
-    print blank
+            d[hostname] += [line[hostname]]
+    blank = {}
 
+    for hostname in hostnames:
+        h = []
+        for path in d[hostname]:
+            s = set()
+            for entry in path:
+                for router in entry:
+                    s.add(entry[ip])
+            h += [s]
+        blank[hostname] = h
+    for hostname in hostnames:
+        print blank[hostname]
+        
 if function_name == "run_traceroute":
     hostname_file_name = sys.argv[2]
     num_packets = int(sys.argv[3])
