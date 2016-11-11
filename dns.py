@@ -280,6 +280,7 @@ def count_different_dns_responses(filename1, filename2):
             counter.add(frozenset(s))
         if len(counter) > 1:
             f1_diff += 1
+    print f1_dict
     whole_dict = f1_dict.copy()
     for hostname in f2_dict:
         if hostname not in whole_dict.keys():
