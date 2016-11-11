@@ -242,6 +242,8 @@ def count_different_dns_responses(filename1, filename2):
     f2_list = json.loads(f2_str)
     f1_dict = {}
     f2_dict = {}
+    f1_diff = 0
+    whole_diff = 0
     for dig in f1_list:
         for query in dig["Queries"]:
             query_set = set()
@@ -272,8 +274,14 @@ def count_different_dns_responses(filename1, filename2):
                     f2_dict[dig["Name"]] = [query_set]
                 else:
                     f2_dict[dig["Name"]] += [query_set]
-    print f1_dict
-    print f2_dict
+    for hostname in f1_dict:
+        counter = set()
+        for s in f1_dict[hostname]:
+            counter.add(s)
+        print counter
+        if len(counter) >= 1:
+            f1_diff += 1
+
 
 
 if function_name == "run_dig":
