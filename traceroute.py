@@ -142,6 +142,14 @@ def append():
     with open("tr_a.json", "w") as fp:
         fp.write("%s \n %s \n %s \n %s \n %s" % (f1_str, f2_str, f3_str, f4_str, f5_str))
 
+def append2():
+    f1 = open("comp.json")
+    f2 = open("pub.json")
+    f1_str = f1.read()
+    f2_str = f2.read()
+    with open("tr_b.json", "w") as fp:
+        fp.write("%s \n %s" % (f1_str, f2_str))
+
 def question():
     f = open("tr_a.json", "r")
     file_string = f.read()
