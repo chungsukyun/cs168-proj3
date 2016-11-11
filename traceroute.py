@@ -101,11 +101,11 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
         json.dump(traceroute_dict, fp)
 
 def append():
-    f1 = open(traceroute_a_1.json)
-    f2 = open(traceroute_a_2.json)
-    f3 = open(traceroute_a_3.json)
-    f4 = open(traceroute_a_4.json)
-    f5 = open(traceroute_a_5.json)
+    f1 = open("traceroute_a_1.json")
+    f2 = open("traceroute_a_2.json")
+    f3 = open("traceroute_a_3.json")
+    f4 = open("traceroute_a_4.json")
+    f5 = open("traceroute_a_5.json")
     f1_str = f1.read()
     f2_str = f2.read()
     f3_str = f3.read()
