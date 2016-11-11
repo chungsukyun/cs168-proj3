@@ -210,7 +210,10 @@ def generate_time_cdfs(json_filename, output_filename):
             time += query["Time in millis"]
             for answer in query["Answers"]:
                 if answer["Type"] == "A" or answer["Type"] == "CNAME":
-                    if dig["Name"] == answer["Queried name"]:
+                    test_name = answer["Queried name"]
+                    if test_name[len(test_name)-1] == ".":
+                        test_name = test_name[:len(test_name)-1]
+                    if dig["Name"] == test_name:
                         terminating_time += query["Time in millis"]
         if time != 0:
             whole_list += [time]
