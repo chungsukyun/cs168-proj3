@@ -253,7 +253,7 @@ def count_different_dns_responses(filename1, filename2):
                     if dig["Name"] == test_name:
                         query_set.add(answer["Data"])
             query_set = frozenset(query_set)
-            print query_set
+            print f1_dict[dig["Name"]]
             if len(query_set) != 0:
                 if dig["Name"] not in f1_dict.keys():
                     f1_dict[dig["Name"]] = set(query_set)
