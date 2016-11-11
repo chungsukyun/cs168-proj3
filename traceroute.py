@@ -150,7 +150,7 @@ def question():
             s = set()
             for entry in path:
                 for router in entry:
-                    s.add(entry["ip"])
+                    s.add(router["ip"])
             h += [s]
         blank[hostname] = h
     for hostname in hostnames:
