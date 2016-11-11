@@ -112,7 +112,8 @@ def get_average_ttls(filename):
             terminating_list_2 = []
             for answer in query["Answers"]:
                 if answer["Type"] == "A" or answer["Type"] == "CNAME":
-                    terminating_list_2 += [answer["TTL"]]
+                    if dig["Name"] == answer["Queried name"]:
+                        terminating_list_2 += [answer["TTL"]]
                 if answer["Queried name"] == ".":
                     root_list_2 += [answer["TTL"]]
                 elif dot_count(answer["Queried name"]) == 1:
@@ -176,7 +177,8 @@ def get_average_times(filename):
             time += query["Time in millis"]
             for answer in query["Answers"]:
                 if answer["Type"] == "A" or answer["Type"] == "CNAME":
-                    terminating_time += query["Time in millis"]
+                    if dig["Name"] == answer["Queried name"]:
+                        terminating_time += query["Time in millis"]
         if time != 0:
             whole_list += [time]
         if terminating_time != 0:
@@ -200,7 +202,8 @@ def generate_time_cdfs(json_filename, output_filename):
             time += query["Time in millis"]
             for answer in query["Answers"]:
                 if answer["Type"] == "A" or answer["Type"] == "CNAME":
-                    terminating_time += query["Time in millis"]
+                    if dig["Name"] == answer["Queried name"]:
+                        terminating_time += query["Time in millis"]
         if time != 0:
             whole_list += [time]
         if terminating_time != 0:
@@ -221,6 +224,17 @@ def generate_time_cdfs(json_filename, output_filename):
     plot.ylabel("cumulative fraction of successful dig calls")
     with backend_pdf.PdfPages(output_filename) as pdf:
         pdf.savefig()
+
+def count_different_dns_responses(filename1, filename2):
+    f1 = open(filename1, "r")
+    f2 = open(filename2, "r")
+    f1_str = f1.read()
+    f2_str = f2_read()
+    f1_list = json.loads(f1_str)
+    f2_list = json.loads(f2_str)
+    for dig in f1_list:
+        for query in dig:
+            pass
 
 if function_name == "run_dig":
     hostname_filename = sys.argv[2]
