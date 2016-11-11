@@ -160,21 +160,22 @@ if function_name == "plot_median_rtt_cdf":
     #     pdf.savefig()
 
 def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
-    json_file = open(agg_ping_results_filename)
+    json_file = open(raw_ping_results_filename)
     json_str = json_file.read()
-    aggregated_ping_dict = json.loads(json_str)
-    median_rtt_list = []
-    for key in aggregated_ping_dict.keys():
-        if aggregated_ping_dict[key]["median_rtt"] != -1.000:
-            median_rtt_list += [aggregated_ping_dict[key]["median_rtt"]]
-    median_rtt_list.sort()
-    y_list = range(1, len(median_rtt_list) + 1)
-    for i in range(len(median_rtt_list)):
-        y_list[i] = float(y_list[i])/float(len(median_rtt_list))
-    plot.plot(median_rtt_list, y_list, label="median rtt cdf")
+    raw_ping_dict = json.loads(json_str)
+    rtt_list = []
+    for key in raw.keys():
+        for rtt in raw_ping_dict[key]:
+            if rtt != -1.000
+                rtt_list += [rtt]
+    rtt_list.sort()
+    y_list = range(1, len(rtt_list) + 1)
+    for i in range(len(rtt_list)):
+        y_list[i] = float(y_list[i])/float(len(rtt_list))
+    plot.plot(rtt_list, y_list, label="rtt cdf")
     plot.legend()
     plot.grid()
-    plot.xlabel("Median RTT")
+    plot.xlabel("RTT")
     plot.ylabel("Cumulative Fraction of Websites")
     with backend_pdf.PdfPages(output_cdf_filename) as pdf:
         pdf.savefig()
