@@ -11,7 +11,7 @@ function_name = sys.argv[1]
 def find_num_names(lst):
     i = 0
     for e in lst:
-        if e[0] == "[":
+        if e[0] == "(":
             i += 1
     return i
 
@@ -80,36 +80,36 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
                 ASN = ""
                 IP = ""
                 Name = ""
-                j = find_index_string(line, "[")
-                if line[j][1] == "*":
+                j = find_index_string(line, "(")
+                if line[j+1][1] == "*":
                     ASN = "None"
                 else:
                     x = 0
                     b = False
-                    while x < len(line[j]):
-                        if line[j][x] == "/":
+                    while x < len(line[j+1]):
+                        if line[j+1][x] == "/":
                             b = True
                             break
                         x += 1
                     if b == True:
-                        ASN = line[j][3:x] + "/" + line[j][x+3:(len(line[j])-1)]
+                        ASN = line[j+1][3:x] + "/" + line[j+1][x+3:(len(line[j+1])-1)]
                     else:
-                        ASN = line[j][3:(len(line[j])-1)]
-                if line[j-1][1] == "*":
+                        ASN = line[j+1][3:(len(line[j+1])-1)]
+                if line[j][1] == "*":
                     IP = "None"
                 else:
-                    IP = line[j-1][1:(len(line[j-1])-1)]
+                    IP = line[j][1:(len(line[j])-1)]
                     b = False
                     for e in entry:
                         if e["ip"] == IP:
                             b = True
                     if b == True:
                         continue
-                if line[j-2][0] == "*":
+                if line[j-1][0] == "*":
                     Name = "None"
                 else:
-                    Name = line[j-2]
-                line = line[j+1:]
+                    Name = line[j-1]
+                line = line[j+2:]
                 entry += [{"name": Name, "ip": IP, "ASN": ASN}]
             name_hops += [entry]
     traceroute_dict[hostname] = name_hops
