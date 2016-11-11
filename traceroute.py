@@ -84,8 +84,13 @@ def parse_traceroute(raw_traceroute_filename, output_filename):
                 if line[j][1] == "*":
                     ASN = "None"
                 else:
-                    if find_index_string(line[j], "/") != "":
-                        x = find_index_string(line[j], "/")
+                    x = 0
+                    b = False
+                    while x < len(line[j]):
+                        if line[j][x] == "/":
+                            b = True
+                            break
+                    if b == True:
                         ASN = line[j][3:x] + "/" + line[j][x+1:(len(line[j])-1)]
                     else:
                         ASN = line[j][3:(len(line[j])-1)]
