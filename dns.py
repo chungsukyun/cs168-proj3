@@ -179,7 +179,7 @@ def get_average_times(filename):
             for answer in query["Answers"]:
                 if answer["Type"] == "A" or answer["Type"] == "CNAME":
                     test_name = answer["Queried name"]
-                    if test_name[len(test_name)] == ".":
+                    if test_name[len(test_name)-1] == ".":
                         test_name = test_name[:len(test_name)-1]
                     if dig["Name"] == test_name:
                         terminating_time += query["Time in millis"]
