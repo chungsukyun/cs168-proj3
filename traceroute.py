@@ -194,5 +194,7 @@ elif function_name == "append":
     append()
 elif function_name == "question":
     question()
+elif function_name == "append2":
+    append2()
 else:
     print "The function you have called does not exist."
