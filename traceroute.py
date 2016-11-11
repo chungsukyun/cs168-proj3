@@ -33,20 +33,10 @@ def find_string(lst, s):
         i += 1
     return ""
 
-def run_traceroute(hostname_file_name, num_packets, output_filename):
-    hostnames = []
-    hostname_file = open(hostname_file_name, 'r')
-    line = hostname_file.readline().rstrip()
-    while line != "":
-        hostnames += [line]
-        line = hostname_file.readline().rstrip()
-    # traceroute_dict = {}
+def run_traceroute(hostnames, num_packets, output_filename):
     timestamp = str(time.time())
-    #datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
-    # traceroute_dict["timestamp"] = timestamp
     big_string = "timestamp: " + timestamp +"\n"
     for name in hostnames:
-        # name_hops = []
         ls_output, err = subprocess.Popen(["traceroute", "-A", "-q", str(num_packets), name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
         big_string += ls_output
     target = open(output_filename, "w")
@@ -180,7 +170,7 @@ def question():
             print s
 
 if function_name == "run_traceroute":
-    hostname_file_name = sys.argv[2]
+    hostnames = sys.argv[2]
     num_packets = int(sys.argv[3])
     output_filename = sys.argv[4]
     run_traceroute(hostname_file_name, num_packets, output_filename)
