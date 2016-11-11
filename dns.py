@@ -237,7 +237,7 @@ def count_different_dns_responses(filename1, filename2):
     f1 = open(filename1, "r")
     f2 = open(filename2, "r")
     f1_str = f1.read()
-    f2_str = f2_read()
+    f2_str = f2.read()
     f1_list = json.loads(f1_str)
     f2_list = json.loads(f2_str)
     f1_dict = {}
