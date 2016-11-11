@@ -112,7 +112,7 @@ def append():
     f4_str = f4.read()
     f5_str = f5.read()
     with open("tr_a.json", "w") as fp:
-        fp.writelines([f1_str, f2_str, f3_str, f4_str, f5_str])
+        fp.write("%s \n %s \n %s \n %s \n %s" % (f1_str, f2_str, f3_str, f4_str, f5_str))
 
 if function_name == "run_traceroute":
     hostname_file_name = sys.argv[2]
