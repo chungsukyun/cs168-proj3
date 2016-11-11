@@ -150,12 +150,12 @@ def question():
             s = set()
             for entry in path:
                 for router in entry:
-                    s.add(entry[ip])
+                    s.add(entry["ip"])
             h += [s]
         blank[hostname] = h
     for hostname in hostnames:
         print blank[hostname]
-        
+
 if function_name == "run_traceroute":
     hostname_file_name = sys.argv[2]
     num_packets = int(sys.argv[3])
