@@ -142,6 +142,7 @@ def question():
             lst = line[hostname]
             for hop in lst:
                 if len(hop) > 1:
+                    print hop
                     blank.add(hostname)
     print blank
 
